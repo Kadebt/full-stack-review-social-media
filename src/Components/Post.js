@@ -6,17 +6,13 @@ const Post = (props) => {
   return (
     <li className="post-container">
       <div>
-        <p className="post-text">
-          {
-            //something goes here
-          }
-        </p>
+        <p className="post-text">{props.data.content}</p>
       </div>
       <div className="post-buttons">
         <button
           className="input-container-button-small"
           onClick={() => {
-            //something goes here
+            props.toggleEdit()
           }}
         >
           Edit
@@ -24,7 +20,7 @@ const Post = (props) => {
         <button
           className="input-container-button-small"
           onClick={() => {
-            //something goes here
+            props.handleDelete(props.data.post_id)
           }}
         >
           Delete

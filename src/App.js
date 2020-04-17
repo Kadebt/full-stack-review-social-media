@@ -1,15 +1,20 @@
 import React from 'react'
 import AuthHeader from './Components/AuthHeader'
-import Profile from './Components/Profile'
+import Header from './Components/Header'
+import routes from './routes'
+import {connect} from 'react-redux'
 import './App.css'
 
 function App(props) {
   return (
     <div className="App">
-      <AuthHeader />
-      <Profile />
+      {props.isLoggedIn ? <Header/> : <AuthHeader />}
+      {routes}
     </div>
   )
 }
 
-export default App
+const mapStateToProps = reduxState => reduxState
+
+export default connect(mapStateToProps)(App)
+

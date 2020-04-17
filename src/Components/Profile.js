@@ -1,19 +1,24 @@
 import React from 'react'
-
-//TODO Build out function
+import { connect } from 'react-redux'
+import { logoutUser } from '../ducks/reducer'
+import axios from 'axios'
 
 const Profile = (props) => {
   const logout = () => {
-    //something goes here
+    axios.delete('/auth/logout').then(() => {
+      props.logoutUser()
+      props.history.push('/')
+    })
   }
 
   return (
     <div>
-      <p>{/* user_id*/}</p>
-      <p>{/*email */}</p>
+      <p>{props.user.users_id}</p>
+      <p>{props.user.email}</p>
       <button
         onClick={() => {
-          //something goes here
+          logout()
+          
         }}
       >
         Log out
@@ -22,4 +27,6 @@ const Profile = (props) => {
   )
 }
 
-export default Profile
+const mapStateToProps = (reduxState) => reduxState
+
+export default connect(mapStateToProps, { logoutUser })(Profile)

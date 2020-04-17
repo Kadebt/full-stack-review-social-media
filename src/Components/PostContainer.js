@@ -13,11 +13,29 @@ class PostContainer extends React.Component {
   }
 
   toggleEdit = () => {
-    //something goes here
+    this.setState({
+      isEditing: !this.state.isEditing,
+    })
   }
 
   render() {
-    return <></>
+    return (
+      <>
+        {this.state.isEditing ? (
+          <Edit
+            handleEdit={this.props.handleEdit}
+            toggleEdit={this.toggleEdit}
+            data={this.props.data}
+          />
+        ) : (
+          <Post
+            handleDelete={this.props.handleDelete}
+            toggleEdit={this.toggleEdit}
+            data={this.props.data}
+          />
+        )}
+      </>
+    )
   }
 }
 
